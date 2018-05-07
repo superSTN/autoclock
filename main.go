@@ -7,6 +7,8 @@ import (
 	"encoding/json"
 	"math/rand"
 	"strconv"
+	"time"
+	"github.com/superSTN/autoclock/tool"
 )
 
 const (
@@ -18,6 +20,7 @@ const (
 	jingdu = 116.32936686204675
 	checkin = "checkin"       // 上班
 	checkout = "checkout"     // 下班
+	filePath = "log.txt"
 )
 
 type User struct {
@@ -34,8 +37,18 @@ type ResultRSP struct {
 
 
 func main()  {
-	token := login()
-	clock(token, checkin)
+	ticker := time.NewTicker(1 * time.Hour)
+	for range ticker.C {
+		tm := time.Now().Hour()
+		if tm == 7 {
+			token := login()
+			clock(token, checkin)
+		} else if tm == 18 {
+			token := login()
+			clock(token, checkout)
+		}
+	}
+
 }
 
 // 登陆返回token函数
@@ -79,6 +92,14 @@ func clock(token string, clockType string)  {
 	json.Unmarshal(body, &resultRSP)
 	fmt.Printf("result : %#v\n", resultRSP)
 	if resultRSP.Success == "true" {
-		fmt.Println("打卡成功")
+		if clockType == checkin {
+			fmt.Println("上班打卡成功")
+			tool.SendCheckIn()
+		} else if clockType == checkout {
+			fmt.Println("下班打卡成功")
+			tool.SendCheckOut()
+		}
+	} else {
+		fmt.Printf("打卡失败, type: %v, err: %v", clockType, resultRSP.ErrorMessage)
 	}
 }
