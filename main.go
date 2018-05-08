@@ -37,9 +37,11 @@ type ResultRSP struct {
 
 
 func main()  {
+	fmt.Println("start at", time.Now().Hour())
 	ticker := time.NewTicker(1 * time.Hour)
 	for range ticker.C {
 		tm := time.Now().Hour()
+		fmt.Println("Now is", tm)
 		if tm == 7 {
 			token := login()
 			clock(token, checkin)
