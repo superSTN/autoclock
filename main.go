@@ -50,7 +50,6 @@ func main()  {
 			clock(token, checkout)
 		}
 	}
-
 }
 
 // 登陆返回token函数
