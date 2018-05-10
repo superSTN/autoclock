@@ -38,7 +38,8 @@ type ResultRSP struct {
 
 func main()  {
 	fmt.Println("start at", time.Now().Hour())
-	ticker := time.NewTicker(1 * time.Hour)
+	tool.SendStart()
+	ticker := time.NewTicker(1 * time.Minute)
 	for range ticker.C {
 		tm := time.Now().Hour()
 		fmt.Println("Now is", tm)

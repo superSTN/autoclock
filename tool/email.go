@@ -70,3 +70,16 @@ func SendCheckOut()  {
 		fmt.Println("发送成功")
 	}
 }
+
+func SendStart()  {
+	subject := "自动打卡启动"
+	fmt.Println("SEND EMAIL ...")
+	err :=SendToMail(user, pwd, host, to, subject, body,"html")
+
+	if err != nil{
+		fmt.Println("发送邮件错误！")
+		fmt.Println(err)
+	}else{
+		fmt.Println("发送成功")
+	}
+}
