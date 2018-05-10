@@ -1,3 +1,4 @@
+#!/bin/sh
 RUN_NAME="autoclock"
 CURDIR=$(cd $(dirname $0); pwd)
 
