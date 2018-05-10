@@ -1,3 +1,4 @@
 RUN_NAME="autoclock"
+CURDIR=$(cd $(dirname $0); pwd)
 
-exec bin/${RUN_NAME}
+exec $CURDIR/bin/${RUN_NAME}
