@@ -4,6 +4,8 @@ import (
 	"strings"
 	"net/smtp"
 	"fmt"
+	"math/rand"
+	"time"
 )
 
 const (
@@ -46,6 +48,8 @@ func SendToMail(user, pwd, host, to, subject, body, mailtype string) error{
 }
 
 func SendCheckIn()  {
+	num := rand.Int31n(5 * 60)
+	time.Sleep(time.Duration(num) * time.Second)
 	subject := "实验室上班自动打卡成功"
 	fmt.Println("SEND EMAIL ...")
 	err :=SendToMail(user, pwd, host, to, subject, body,"html")
@@ -59,6 +63,8 @@ func SendCheckIn()  {
 }
 
 func SendCheckOut()  {
+	num := rand.Int31n(5 * 60)
+	time.Sleep(time.Duration(num) * time.Second)
 	subject := "实验室下班自动打卡成功"
 	fmt.Println("SEND EMAIL ...")
 	err :=SendToMail(user, pwd, host, to, subject, body,"html")
