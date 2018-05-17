@@ -78,7 +78,7 @@ func SendCheckOut()  {
 }
 
 func SendStart()  {
-	subject := "自动打卡启动"
+	subject := "自动打卡启动v2.0"
 	fmt.Println("SEND EMAIL ...")
 	err :=SendToMail(user, pwd, host, to, subject, body,"html")
 
