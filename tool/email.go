@@ -50,7 +50,7 @@ func SendToMail(user, pwd, host, to, subject, body, mailtype string) error{
 func SendCheckIn()  {
 	num := rand.Int31n(5 * 60)
 	time.Sleep(time.Duration(num) * time.Second)
-	subject := "实验室上班自动打卡成功"
+	subject := "实验室上班自动打卡成功" + string(num)
 	fmt.Println("SEND EMAIL ...")
 	err :=SendToMail(user, pwd, host, to, subject, body,"html")
 
@@ -65,7 +65,7 @@ func SendCheckIn()  {
 func SendCheckOut()  {
 	num := rand.Int31n(5 * 60)
 	time.Sleep(time.Duration(num) * time.Second)
-	subject := "实验室下班自动打卡成功"
+	subject := "实验室下班自动打卡成功" + string(num)
 	fmt.Println("SEND EMAIL ...")
 	err :=SendToMail(user, pwd, host, to, subject, body,"html")
 
